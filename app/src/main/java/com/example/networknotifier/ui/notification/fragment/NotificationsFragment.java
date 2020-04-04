@@ -1,4 +1,4 @@
-package com.example.networknotifier.ui.notifications;
+package com.example.networknotifier.ui.notification.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.networknotifier.R;
+import com.example.networknotifier.ui.notification.viewmodel.NotificationsViewModel;
 
 public class NotificationsFragment extends Fragment {
 

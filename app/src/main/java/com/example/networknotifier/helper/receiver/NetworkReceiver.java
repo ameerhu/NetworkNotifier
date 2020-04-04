@@ -1,4 +1,4 @@
-package com.example.networknotifier.ui.helpers;
+package com.example.networknotifier.helper.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+import com.example.networknotifier.helper.ChangeStateHelper;
 
 
 public class NetworkReceiver extends BroadcastReceiver {
@@ -23,10 +24,6 @@ public class NetworkReceiver extends BroadcastReceiver {
         cState = new ChangeStateHelper(context);
         ConnectivityManager connMgr =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-//System.err.println("========welcome=========");
-//System.err.println("Action: ---->>> " + intent.getAction() + " <<<----");
-
 
         if (intent.getAction() == Intent.ACTION_AIRPLANE_MODE_CHANGED) {
             boolean onOff = intent.getBooleanExtra("state", false);

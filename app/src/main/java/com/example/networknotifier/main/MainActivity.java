@@ -1,14 +1,13 @@
-package com.example.networknotifier;
+package com.example.networknotifier.main;
 
 import android.app.ActivityManager;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.networknotifier.ui.helpers.NetworkMonitor;
-import com.example.networknotifier.ui.helpers.NetworkReceiver;
+import com.example.networknotifier.R;
+import com.example.networknotifier.helper.NetworkMonitor;
+import com.example.networknotifier.helper.receiver.NetworkReceiver;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         boolean running = false;
 
         ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        if(manager.getRunningServices(Integer.MAX_VALUE)!=null)
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE))
         {
             if (NetworkMonitor.class.getName().equals(service.service.getClassName()))
@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
             Log.e("MA", "already running service");
         }
 
-        receiver = new NetworkReceiver();
-        IntentFilter filter = new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+//        receiver = new NetworkReceiver();
+//        IntentFilter filter = new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+//        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
 //        registerReceiver(receiver,filter);
 
     }

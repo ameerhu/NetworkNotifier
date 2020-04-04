@@ -1,4 +1,4 @@
-package com.example.networknotifier.ui.notifications;
+package com.example.networknotifier.ui.notification.viewmodel;
 
 import android.app.Application;
 import android.content.Context;
