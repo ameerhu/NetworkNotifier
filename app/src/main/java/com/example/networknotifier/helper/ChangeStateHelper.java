@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.example.networknotifier.R;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -15,6 +17,7 @@ import java.util.Locale;
 
 public class ChangeStateHelper {
 
+    private boolean phone;
     private boolean g2;
     private boolean g3;
     private boolean lte;
@@ -40,7 +43,8 @@ public class ChangeStateHelper {
     }
 
     public void updateMonitorNetwork(SharedPreferences settings){
-        Log.e("CSH", "update setting");
+//        Log.e("CSH", "update setting");
+        phone = settings.getBoolean("phone", false);
         g2 = settings.getBoolean("2g", false);
         g3 = settings.getBoolean("3g", false);
         lte = settings.getBoolean("lte", false);
@@ -50,7 +54,8 @@ public class ChangeStateHelper {
     }
 
     public void getNetworkClass(Context context, int networkType) {
-        Log.e("Monitor network", " 2g: " + g2 + " 3g: " + g3 + " lte: " + lte + " wifi: " + wifi + " startup: "+startup+" notifi: "+notifi);
+        Log.e("Monitor network", "phone: " + phone + " 2g: " + g2 + " 3g: " + g3 +
+                " lte: " + lte + " wifi: " + wifi + " startup: "+startup+" notifi: "+notifi);
         message=null;
         switch (networkType) {
             case TelephonyManager.NETWORK_TYPE_UNKNOWN: {
@@ -97,9 +102,9 @@ public class ChangeStateHelper {
             bout = new OutputStreamWriter(context.openFileOutput("network.log",Context.MODE_APPEND));
             bout.append(getDate() + " => " +  message+"\n");
             bout.close();
+            Toast.makeText(context, getDate() + " => " + message + "\n",Toast.LENGTH_LONG).show();
             int n = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
             mNotificationManager.notify(n,notifi(context, message).build());
-//            showAlert(context, message);
 //            Toast.makeText(context, date + " " +  message , Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -111,21 +116,7 @@ public class ChangeStateHelper {
         }
     }
 
-//    public void showAlert(Context context, String message){
-//        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-//        alertDialog.setTitle("Network Status");
-//        alertDialog.setMessage(message);
-//        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-//                new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//        alertDialog.show();
-//    }
-
     public Notification.Builder notifi(Context context, String message){
-        Log.e("CSH","Notify calling");
         Notification.Builder builder = new Notification.Builder(context)
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle(context.getString(R.string.app_name))
@@ -134,18 +125,8 @@ public class ChangeStateHelper {
         return builder;
     }
 
-//    public NotificationCompat.Builder notifi(Context context, String message){
-//        Log.e("CSH","Notify calling");
-//        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-//                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-//                .setContentTitle(context.getString(R.string.app_name))
-//                .setContentText(message)
-//                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-//        return builder;
-//    }
-
     public String getDate(){
-        String pattern = " yyyy-MM-dd HH:mm:ss a";
+        String pattern = " yyyy-MM-dd => HH:mm:ss a";
         SimpleDateFormat simpleDateFormat =new SimpleDateFormat(pattern, new Locale("fr", "FR"));
         String date = simpleDateFormat.format(new Date());
         return date;

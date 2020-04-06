@@ -2,6 +2,8 @@ package com.example.networknotifier.main;
 
 import android.app.ActivityManager;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -36,32 +38,38 @@ public class MainActivity extends AppCompatActivity {
 
 //        NetworkMonitor nm = new NetworkMonitor(this.getApplicationContext());
 
-        boolean running = false;
-
-        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-        if(manager.getRunningServices(Integer.MAX_VALUE)!=null)
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE))
-        {
-            if (NetworkMonitor.class.getName().equals(service.service.getClassName()))
-            {
-                running = true;
-                Log.e("MA", "already running service "+running);
-                return;
-            }
-        }
-
-        if(!running){
+        if(!isServiceRunning()){
             Log.e("MA", "starting service");
             startService(new Intent(this, NetworkMonitor.class));
         }else {
             Log.e("MA", "already running service");
         }
 
-//        receiver = new NetworkReceiver();
-//        IntentFilter filter = new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-//        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-//        registerReceiver(receiver,filter);
+        registeringNetworkBroadcasting();
 
+    }
+
+    public boolean isServiceRunning(){
+        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        if(manager.getRunningServices(Integer.MAX_VALUE)!=null)
+            for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE))
+            {
+                if (NetworkMonitor.class.getName().equals(service.service.getClassName()))
+                {
+                    Log.e("MA", "already running service ");
+                    return true;
+                }
+            }
+        return false;
+    }
+
+    public void registeringNetworkBroadcasting(){
+        receiver = new NetworkReceiver();
+        IntentFilter filter = new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver,filter);
+//        unregisterReceiver(receiver);
+        Log.e("MA", " Network Broadcast. ");
     }
 
 }

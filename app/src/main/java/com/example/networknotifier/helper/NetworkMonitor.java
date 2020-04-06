@@ -3,11 +3,15 @@ package com.example.networknotifier.helper;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.example.networknotifier.helper.receiver.NetworkReceiver;
 
 import androidx.annotation.Nullable;
 
@@ -16,6 +20,8 @@ public class NetworkMonitor extends Service {
     private TelephonyManager mTelephonyManager;
     private Context context;
     private ChangeStateHelper cState;
+    private NetworkReceiver receiver;
+    private IntentFilter filter;
 
     @Nullable
     @Override
@@ -31,8 +37,10 @@ public class NetworkMonitor extends Service {
         cState = new ChangeStateHelper(this.context);
 
         if(this.context!=null) {
-            mTelephonyManager = (TelephonyManager)
-                    this.context.getSystemService(Context.TELEPHONY_SERVICE);
+            mTelephonyManager = (TelephonyManager) this.context.getSystemService(Context.TELEPHONY_SERVICE);
+            receiver = new NetworkReceiver();
+            filter = new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+            filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
             Log.e("NM", "listener created.");
         }else{
             Toast.makeText(context,"Unable to start Network Monitor",Toast.LENGTH_SHORT).show();

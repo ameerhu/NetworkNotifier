@@ -2,212 +2,30 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/linear_layout"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="10dp"
-                android:layout_marginHorizontal="20dp"
-                android:paddingHorizontal="15dp"
-                android:paddingTop="5dp"
-                android:background="@drawable/green_bordered">
-
-                <TextView
-                    android:id="@+id/txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginHorizontal="15dp"
-                    android:textSize="18dp"
-                    android:text="Avalaible Network : 3G"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:layout_width="328dp"
-                    android:layout_height="34dp"
-                    android:paddingHorizontal="5dp"
-                    android:layout_marginHorizontal="15dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_notificatio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="08/04/2020"
-                        android:textSize="16sp" />
-                    <TextView
-                        android:id="@+id/text_notifi_messag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="05:03:00 AM"
-                        android:layout_marginLeft="90dp"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="20dp"
-                android:paddingHorizontal="15dp"
-                android:paddingTop="5dp"
-                android:background="@drawable/yellow_border">
-
-                <TextView
-                    android:id="@+id/text_notificatios"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginHorizontal="15dp"
-                    android:textSize="18dp"
-                    android:text="Avalaible Network : 5G"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:layout_width="328dp"
-                    android:layout_height="34dp"
-                    android:layout_marginHorizontal="15dp"
-                    android:paddingHorizontal="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/jia"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="08/04/2020"
-                        android:textSize="16sp" />
-                    <TextView
-                        android:id="@+id/text_notifi_message"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="05:03:00 AM"
-                        android:layout_marginLeft="90dp"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginVertical="10dp"
-                android:layout_marginHorizontal="20dp"
-                android:paddingHorizontal="15dp"
-                android:paddingTop="5dp"
-                android:background="@drawable/red_bordered">
-
-                <TextView
-                    android:id="@+id/jia2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginHorizontal="15dp"
-                    android:textSize="18dp"
-                    android:text="Avalaible Network : LTE"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:layout_width="328dp"
-                    android:layout_height="34dp"
-                    android:layout_marginHorizontal="15dp"
-                    android:paddingHorizontal="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_notificaton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="08/04/2020"
-                        android:textSize="16sp" />
-                    <TextView
-                        android:id="@+id/text_notifimessage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="05:03:00 AM"
-                        android:layout_marginLeft="90dp"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="10dp"
-                android:paddingHorizontal="15dp"
-                android:paddingTop="5dp"
-                android:background="@drawable/blue_bordered">
-
-                <TextView
-                    android:id="@+id/text_noifications"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginHorizontal="15dp"
-                    android:textSize="18dp"
-                    android:text="Avalaible Network : 4G"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:layout_width="328dp"
-                    android:layout_height="34dp"
-                    android:layout_marginHorizontal="15dp"
-                    android:paddingHorizontal="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textnotification"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="08/04/2020"
-                        android:textSize="16sp" />
-                    <TextView
-                        android:id="@+id/textnotifi_message"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="05:03:00 AM"
-                        android:layout_marginLeft="90dp"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/btn_clear"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:text="@string/clear_log"
-        android:textColor="@android:color/white"
-        android:background="@drawable/animation"
-        android:layout_marginBottom="65dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--
-    app:layout_constraintEnd_toStartOf="@id/text_notifi_message"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/text_notification"
-
-        app:layout_constraintEnd_toStartOf="@id/text_notifi_message"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_notifications"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/text_notifications"
+        app:layout_constraintBottom_toTopOf="@id/btn_clear"
         app:layout_constraintTop_toTopOf="parent"
--->
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_clear"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_delete_forever_black_24dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

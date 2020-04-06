@@ -52,8 +52,8 @@ public class DashboardViewModel extends AndroidViewModel {
         wifi.setValue(settings.getBoolean("wifi",false));
         startup.setValue(settings.getBoolean("startUp", false));
         notifi.setValue(settings.getBoolean("notifi",false));
-        Log.e("Dashboard Update", " 2g: " + g2.getValue() + " 3g: " + g3.getValue() + " lte: " + g4.getValue() +
-                " wifi: " + wifi.getValue() + " startup: " + startup.getValue() + " notifi: " + notifi.getValue());
+        Log.e("Dashboard Update", "phone: " + phone.getValue() + " 2g: " + g2.getValue() + " 3g: " + g3.getValue() + " lte: "
+                + g4.getValue() + " wifi: " + wifi.getValue() + " startup: " + startup.getValue() + " notifi: " + notifi.getValue());
     }
 
     public LiveData<Boolean> getG2() { return g2; }
